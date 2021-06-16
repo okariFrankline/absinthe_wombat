@@ -6,6 +6,13 @@ defmodule Absinthe.WombatWeb.Schema.AccountResolver do
   @doc false
   def create_user(_parent, %{input: user_params}, _resolution) do
     with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
+      ## broadcast the user.
+      Absinthe.Subscription.publish(
+        AbsintheWombatWeb.Endpoint,
+        user,
+        user_created: "*"
+      )
+
       {:ok, user}
     end
   end

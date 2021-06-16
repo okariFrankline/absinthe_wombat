@@ -39,7 +39,8 @@ defmodule AbsintheWombatWeb.Router do
       forward "/",
               Absinthe.Plug.GraphiQL,
               schema: Absinthe.WombatWeb.Schema,
-              interface: :playground
+              interface: :playground,
+              socket: AbsintheWombatWeb.UserSocket
     end
 
     # scope "/graphiql" do
@@ -57,6 +58,7 @@ defmodule AbsintheWombatWeb.Router do
 
   #   forward "/",
   #           Absinthe.Plug,
-  #           schema: Absinthe.WombatWeb.Schema
+  #           schema: Absinthe.WombatWeb.Schema,
+  #            socket: AbsintheWombatWeb.UserSocket
   # end
 end

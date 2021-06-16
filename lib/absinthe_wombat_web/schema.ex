@@ -14,4 +14,13 @@ defmodule Absinthe.WombatWeb.Schema do
   mutation do
     import_fields(:user_mutations)
   end
+
+  ## subscription
+  subscription do
+    field :user_created, :user do
+      config(fn _args, _info ->
+        {:ok, topic: "*"}
+      end)
+    end
+  end
 end
